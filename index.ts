@@ -1,8 +1,9 @@
 import { Application } from 'https://deno.land/x/oak/mod.ts';
 import routers from './src/routers/index.ts';
+ import { oakCors } from 'https://deno.land/x/cors/mod.ts';
 
 const app = new Application();
-
+ app.use(oakCors());
 app.use(routers.routes());
 app.use(routers.allowedMethods());
 
