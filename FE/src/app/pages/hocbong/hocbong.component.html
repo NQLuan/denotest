@@ -1,0 +1,61 @@
+<ngx-loading-bar [height]="'5px'" [color]="'#FFFF66'"></ngx-loading-bar>
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Quản lý sinh vien</h3>
+  </div>
+  <div class="box-body">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="input-group">
+          <input class="form-control" type="text" placeholder="Nhập từ khóa" />
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" (click)="export()">
+              <!-- <i class="fa fa-search"></i> --> Export
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th style="width: 5%">Id</th>
+              <th>Tên sinh vien</th>
+              <th>Tên lớp</th>
+              <th>Diem TB</th>
+            </tr>
+            <tr
+              *ngFor="let item of students1">
+              <td>{{ item.Id }}</td>
+              <td>{{ item.Name }}</td>
+              <td>{{ item.className }}</td>
+              <td>{{ item.diemTB }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <div class="text-center">
+          <pagination-controls class="custom-pagination" (pageChange)="getAllSuppliers($event)" autoHide="true"
+            responsive="true" previousLabel="Trước" nextLabel="Sau" directionLinks="true">
+          </pagination-controls>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <button type="button" class="close" (click)="close()">&times;</button>
+    <h4 class="modal-title">Xác nhận</h4>
+  </div>
+  <div class="modal-body">
+    <p>Bạn có chắc chắn muốn xóa sinh vien cấp này không?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="close()">Đóng</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()">OK</button>
+  </div>
+</ng-template>

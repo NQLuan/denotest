@@ -1,0 +1,35 @@
+<div class="box box-primary">
+
+  <div class="box-header with-border">
+    <h3 class="box-title">Thêm mới</h3>
+  </div>
+
+  <form [formGroup]="addStudentForm" (submit)="addStudent()" novalidate>
+    <div class="box-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Tên sinh vien</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Tên sinh viên" 
+            [ngClass]="{ 'is-invalid': f.name.errors }">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Lop</label>
+            <select class="form-control" formControlName="classId" [ngClass]="{ 'is-invalid': f.classId.errors }">
+              <option value="">Choose Class Name</option>
+              <option *ngFor="let item of classnames" value={{item.Id}}>{{item.Name}}</option>
+            </select>
+          </div>
+      </div>
+    </div>
+
+    </div>
+    <div class="box-footer text-center">
+      <button [routerLink]="['/students']" class="btn btn-default">Hủy</button>
+      <button type="submit" [disabled]="addStudentForm.invalid" class="btn btn-success">Lưu</button>
+    </div>
+  </form>
+
+</div>
