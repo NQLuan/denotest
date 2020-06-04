@@ -2,13 +2,19 @@ import client from '../database/MySQLClient.ts';
 import IStudent from '../models/IStudent.ts';
 
 const getStudents = async () => {
-  const results = await client.execute('SELECT * FROM Students;');
+  const results = await (await client.execute('SELECT * FROM Students;'));
   return results.rows;
 }
 
 const getStudentById = async (id: string) => {
-  const result = await client.execute('SELECT * FROM Students where id = ' + id);
-  return result;
+  const result = await (await client.execute('SELECT * FROM Students where id = ' + id)).rows;
+  const points =  await (await client.execute('SELECT * FROM Scores where StudentId = ' + id)).rows;
+  let jsonReturn  = [
+    result,
+    points
+  ]
+  //const resultReturn = Object.assign(result, points.rows);
+  return jsonReturn;
 }
 
 const addStudent = async(student : IStudent) => {
